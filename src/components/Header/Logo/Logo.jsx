@@ -1,7 +1,6 @@
 import style from './Logo.module.css';
 
-export const Logo = () => {
-    return (
+export const Logo = () => (
         <a className={style.link} href='/'>
             <svg className={style.logo} width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M116 4H12C7.58 4 4 7.58 4 12V116C4 120.42 7.58 124 12 124H116C120.42 124 124 120.42 124 116V12C124 7.58 120.42 4 116 4Z" fill="#4DA71C"/>
@@ -11,4 +10,3 @@ export const Logo = () => {
             </svg>
         </a>
     )
-}
