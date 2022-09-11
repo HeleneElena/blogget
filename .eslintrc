@@ -133,15 +133,6 @@
     ],
     "key-spacing": "error",
     "keyword-spacing": "error",
-    "max-len": [
-      "error",
-      {
-        "code": 80,
-        "tabWidth": 2,
-        "ignoreUrls": true,
-        "ignorePattern": "goog.(module|require)"
-      }
-    ],
     "new-cap": "error",
     "no-array-constructor": "error",
     "no-mixed-spaces-and-tabs": "error",
