@@ -14,5 +14,5 @@ export const Auth = ({auth}) => (
 );
 
 Auth.propTypes = {
-  auth: PropTypes.boolean,
+  auth: PropTypes.bool,
 };
