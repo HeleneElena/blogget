@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {assignId} from '../../../utils/generateRandomID';
+import {debounceRaf} from './../../../utils/debounceRaf';
 
 import style from './Tabs.module.css';
 import {ReactComponent as ArrowIcon} from './img/arrow.svg';
@@ -18,24 +19,45 @@ const LIST = [
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdown, setIsDropdown] = useState(true);
+
+  const handleResize = () => {
+    if (document.documentElement.clientWidth < 768) {
+      setIsDropdown(true);
+    } else {
+      setIsDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    const debounceResize = debounceRaf(handleResize);
+    debounceResize();
+    window.addEventListener('resize', debounceResize);
+    return () => {
+      window.addEventListener('resize', debounceResize);
+    };
+  }, []);
 
   return (
     <div className={style.container}>
-      <div className={style.wrapperBtn}>
-        <button className={style.btn}
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-          Добавить пост
-          <ArrowIcon width={15} height={15} />
-        </button>
-      </div>
+      {isDropdown && (
+        <div className={style.wrapperBtn}>
+          <button className={style.btn}
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            Добавить пост
+            <ArrowIcon width={15} height={15} />
+          </button>
+        </div>
+      )}
 
-      {isDropdownOpen && (
+      {(isDropdownOpen || !isDropdown) && (
         <ul className={style.list} onClick={() => setIsDropdownOpen(false)}>
           {
-            LIST.map(({value, id}) => (
+            LIST.map(({value, id, Icon}) => (
               <li className={style.item} key={id}>
                 <button className={style.btn} onClick={() => {}}>
                   {value}
+                  {Icon && <Icon width={30} height={30} /> }
                 </button>
               </li>
             ))} 
