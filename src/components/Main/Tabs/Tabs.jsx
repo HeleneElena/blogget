@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import {useEffect, useState} from 'react';
 import {assignId} from '../../../utils/generateRandomID';
 import {debounceRaf} from './../../../utils/debounceRaf';
+import {Text} from '../../../UI/Text';
 
 import style from './Tabs.module.css';
 import {ReactComponent as ArrowIcon} from './img/arrow.svg';
@@ -55,12 +56,15 @@ export const Tabs = () => {
         <ul className={style.list} onClick={() => setIsDropdownOpen(false)}>
           {
             LIST.map(({value, id, Icon}) => (
-              <li className={style.item} key={id}>
-                <button className={style.btn} onClick={() => setBtnText(value)}>
+              <Text As='li' className={style.item} key={id}>
+                <Text 
+                  As='button'               
+                  className={style.btn} 
+                  onClick={() => setBtnText(value)}>
                   {value}
                   {Icon && <Icon width={30} height={30} /> }
-                </button>
-              </li>
+                </Text>
+              </Text>
             ))} 
         </ul>
       )}
