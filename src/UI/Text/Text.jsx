@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import style from './Text.module.css';
 
 export const Text = prop => {
@@ -10,15 +11,34 @@ export const Text = prop => {
     dsize,
     className,
     children,
+    center,
+    href,
   } = prop;
 
   const classes = classNames(
     className,
     style[color],
     {[style[`fs${size}`]]: size},
+    {[style.center]: center},
     {[style[`fst${tsize}`]]: tsize},
     {[style[`fst${dsize}`]]: dsize},
   );
 
-  return <As className={classes}>{children}</As> ;
+  return <As className={classes} href={href}>{children}</As>;
+};
+
+Text.propTypes = {
+  As: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.number,
+  center: PropTypes.bool,
+  tsize: PropTypes.number,
+  dsize: PropTypes.number,
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array,
+  ]),
+  href: PropTypes.string,
 };
