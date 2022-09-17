@@ -40,8 +40,9 @@ Text.propTypes = {
   dsize: PropTypes.number,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
-    PropTypes.string,
+    PropTypes.string, 
     PropTypes.object,
+    PropTypes.number, 
     PropTypes.array,
   ]),
   href: PropTypes.string,
