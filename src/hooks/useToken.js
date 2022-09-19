@@ -7,7 +7,6 @@ export const useToken = (state) => {
     if (location.pathname.includes('/auth')) {
       const token = new URLSearchParams(location.hash.substring(1))
         .get('access_token');
-
       setToken(token);
     }
 
@@ -19,9 +18,14 @@ export const useToken = (state) => {
   useEffect(() => {
     if (token) {
       localStorage.setItem('bearer', token);
-    }
+    } 
   }, [token]);
 
-  return [token];
+  const delToken = () => {
+    localStorage.removeItem('bearer');
+  };
+
+  return [token, delToken];
 };
+
 

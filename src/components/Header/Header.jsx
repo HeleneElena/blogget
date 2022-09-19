@@ -9,14 +9,14 @@ import style from './Header.module.css';
 
 const text = 'Главная';
 
-export const Header = ({token}) => (
+export const Header = ({token, delToken}) => (
   <header className={style.header}>
     <Layout>
       <div className={style.gridContainer}>
-        <Logo/>
+        <Logo />
         <Heading text={text} />
         <Search />
-        <Auth token={token} />
+        <Auth token={token} delToken={delToken} />
       </div>
     </Layout>
   </header>
@@ -24,4 +24,5 @@ export const Header = ({token}) => (
 
 Header.propTypes = {
   token: PropTypes.string,
+  delToken: PropTypes.func,
 };

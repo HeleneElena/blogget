@@ -3,12 +3,11 @@ import {urlAuth} from '../../../api/auth';
 import {Text} from '../../../UI/Text';
 import {useEffect, useState} from 'react';
 import {URL_API} from '../../../api/const';
-import {Logout} from './Logout/Logout';
 
 import style from './Auth.module.css';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 
-export const Auth = ({token}) => {
+export const Auth = ({token, delToken}) => {
   const [auth, setAuth] = useState({});
   const [isBtnOpen, setIsBtnOpen] = useState(false);
 
@@ -20,7 +19,12 @@ export const Auth = ({token}) => {
         Authorization: `bearer ${token}`,
       },
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 401) {
+          return localStorage.setItem('bearer', '');
+        }
+        return response.json();
+      })
       .then(({name, icon_img: iconImg}) => {
         const img = iconImg.replace(/\?.*$/, '');
         setAuth({name, img});
@@ -30,8 +34,12 @@ export const Auth = ({token}) => {
         setAuth({});
       });
   }, [token]);
-    
 
+  const logout = () => {
+    delToken();
+    setAuth({});
+  };
+    
   return (
     <div className={style.container}>
       { auth.name ? (
@@ -44,7 +52,7 @@ export const Auth = ({token}) => {
               alt={`Avatar ${auth.name}`} 
             />
           </button>
-          {isBtnOpen && <Logout />}
+          {isBtnOpen && <button onClick={logout} className={style.logout}>Выйти</button>}
         </>
       ) : (
         <Text className={style.authLink} As='a' href={urlAuth}>
@@ -58,4 +66,6 @@ export const Auth = ({token}) => {
 
 Auth.propTypes = {
   token: PropTypes.string,
+  delToken: PropTypes.func,
 };
+
