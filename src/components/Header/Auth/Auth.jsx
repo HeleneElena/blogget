@@ -1,43 +1,21 @@
 import PropTypes from 'prop-types';
 import {urlAuth} from '../../../api/auth';
 import {Text} from '../../../UI/Text';
-import {useEffect, useState} from 'react';
-import {URL_API} from '../../../api/const';
+import {useState, useContext} from 'react';
+import {tokenContext} from './../../../context/tokenContext';
+import {authContext} from './../../../context/authContext';
 
 import style from './Auth.module.css';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 
-export const Auth = ({token, delToken}) => {
-  const [auth, setAuth] = useState({});
+export const Auth = () => {
   const [isBtnOpen, setIsBtnOpen] = useState(false);
-
-  useEffect(() => {
-    if (!token) return;
-
-    fetch(`${URL_API}/api/v1/me`, {
-      headers: {
-        Authorization: `bearer ${token}`,
-      },
-    })
-      .then(response => {
-        if (response.status === 401) {
-          return localStorage.setItem('bearer', '');
-        }
-        return response.json();
-      })
-      .then(({name, icon_img: iconImg}) => {
-        const img = iconImg.replace(/\?.*$/, '');
-        setAuth({name, img});
-      })
-      .catch(err => {
-        console.err(err);
-        setAuth({});
-      });
-  }, [token]);
+  const {delToken} = useContext(tokenContext);
+  const {auth, clearAuth} = useContext(authContext);
 
   const logout = () => {
     delToken();
-    setAuth({});
+    clearAuth();
   };
     
   return (
