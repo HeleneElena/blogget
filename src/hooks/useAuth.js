@@ -1,6 +1,6 @@
 import {useEffect, useState, useContext} from 'react';
-import {URL_API} from './../api/const';
-import {tokenContext} from './../context/tokenContext';
+import {URL_API} from '../api/const';
+import {tokenContext} from '../context/tokenContext';
 
 export const useAuth = () => {
   const [auth, setAuth] = useState({});
@@ -25,7 +25,7 @@ export const useAuth = () => {
         setAuth({name, img});
       })
       .catch(err => {
-        console.err(err);
+        console.error(err);
         setAuth({});
         delToken();
       });

@@ -1,11 +1,14 @@
-# Dies ist ein in React erstellter Blog. 
-Der Benutzer kann seine eigenen Beiträge hinzufügen, löschen und sortieren. Jeder Beitrag hat eine eigene Bewertung.
+# Blogget ist ein Beitragsaggregator (React)
 
-Это блог, созданный на React. 
-Пользователь может добавлять свои посты, удалять их, сортировать. У каждого поста есть свой рейтинг.
+Verwendete Technologien: React, React-Router, Redux, Redux-Toolkit, sowie ESLint (analysiert Code auf angemessenen Stil) und Hygen (automatisiert das Schreiben von Komponentencode).
 
-This is a blog created in React. 
-Users can add their own posts, delete them, and sort them. Each post has its own rating.
+Eine Auswahl von Beiträgen von reddit.com, wenn ein Benutzer ein Abonnement hat. Die Beiträge sind kategorisiert.
+Die Autorisierung erfolgt über reddit.com.
+Beim ersten Laden werden 10 Beiträge geladen. Wenn die Seite gescrollt wird, werden neue Seiten geladen, falls vorhanden. Wenn Sie auf einen Beitrag klicken, wird er in einem modalen Fenster geöffnet.
+
+
+Blogget является агрегатором постов
+
 
 
 
