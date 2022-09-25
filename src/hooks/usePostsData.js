@@ -3,7 +3,7 @@ import {URL_API} from '../api/const';
 import {useToken} from './useToken';
 
 export const usePostsData = () => {
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState();
   const {token} = useToken();
 
   useEffect(() => {
@@ -20,8 +20,9 @@ export const usePostsData = () => {
         }
         return response.json();
       })
-      .then(({data}) => {
-        setPosts(data);
+      .then(data => {
+        console.log(data);
+        setPosts(data.data.children);
       })
       .catch(err => {
         console.error(err);
