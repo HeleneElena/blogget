@@ -1,14 +1,14 @@
 import React from 'react';
 import style from './Time.module.css';
 import formatDate from '../../../../../utils/formatDate';
-import PropTypes from 'prop-types';
+import {PropTypes} from 'prop-types';
 
-export const Time = props => (
+export const Time = ({date}) => (
   <time
     className={style.date}
-    dateTime={formatDate(props.date)}
+    dateTime={formatDate(date)}
   >
-    {formatDate(props.date)}
+    {formatDate(date)}
   </time>
 );
 
@@ -18,3 +18,5 @@ Time.propTypes = {
     PropTypes.number,
   ]),
 };
+
+
