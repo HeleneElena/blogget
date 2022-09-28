@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {URL_API} from '../api/const';
-import {useToken} from './useToken';
+import {tokenContext} from './../context/tokenContext';
 
 export const usePostsData = () => {
-  const [posts, setPosts] = useState();
-  const {token} = useToken();
+  const [posts, setPosts] = useState([]);
+  const {token} = useContext(tokenContext);
 
   useEffect(() => {
     if (!token) return;
@@ -20,9 +20,9 @@ export const usePostsData = () => {
         }
         return response.json();
       })
-      .then(data => {
+      .then(({data}) => {
         console.log(data);
-        setPosts(data.data.children);
+        setPosts(data.children);
       })
       .catch(err => {
         console.error(err);

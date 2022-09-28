@@ -9,9 +9,9 @@ import style from './Auth.module.css';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 
 export const Auth = () => {
-  const [isBtnOpen, setIsBtnOpen] = useState(false);
   const {delToken} = useContext(tokenContext);
   const {auth, clearAuth} = useContext(authContext);
+  const [isBtnOpen, setIsBtnOpen] = useState(false);
 
   const logout = () => {
     delToken();
@@ -46,4 +46,3 @@ Auth.propTypes = {
   token: PropTypes.string,
   delToken: PropTypes.func,
 };
-

@@ -14,14 +14,6 @@
     border-radius: 20px;
 }
 
-.date {
-    grid-area: data;
-    font-weight: 700;
-    font-size: 10px;
-    line-height: 130%;
-    color: #8f8f8f;
-}
-
 @media (min-width: 580px) {
     .post {
         grid-template-columns: 150px 1fr;
@@ -31,11 +23,6 @@
             'img content content'
             'img rating data';
         min-height: 150px;
-    }
-
-    .date {
-        font-size: 16px;
-        padding-right: 10px;
     }
 }
 
