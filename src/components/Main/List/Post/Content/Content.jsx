@@ -1,13 +1,23 @@
 import PropTypes from 'prop-types';
 import style from './Content.module.css';
+import notfoto from '../img/notphoto.jpg';
 import {Text} from '../../../../../UI/Text';
+import {useState} from 'react';
 
 export const Content = ({postData}) => { 
   const {title, author, thumbnail} = postData;
+  const [showFoto, setShowFoto] = useState(true);
+
+  const haveFoto = () => {
+    setShowFoto(false);
+  };
 
   return ( 
     <>
-      <img className={style.img} src={thumbnail} alt={title} />
+      {showFoto ?
+        (<img className={style.img} src={thumbnail} alt={title} onError={haveFoto} />) :
+        (<img className={style.img} src={notfoto} alt={title} />)
+      }
       <div className={style.content}>
         <Text As='h2' className={style.title}>
           <Text 

@@ -26,6 +26,7 @@ export const usePostsData = () => {
       })
       .catch(err => {
         console.error(err);
+        setPosts([]);
       });
   }, [token]);
 
