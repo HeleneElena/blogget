@@ -1,49 +1,27 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 @import '~normalize.css';
 
 @font-face {
   font-family: 'Merriweather Sans';
   font-style: normal;
   font-weight: 400;
-  src: local(''),
-    url('fonts/merriweather-sans-v20-latin_cyrillic-ext-regular.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
+  src: local(''), url('fonts/merriweather-sans-v20-latin_cyrillic-ext-regular.woff2') format('woff2'),
     url('fonts/merriweather-sans-v20-latin_cyrillic-ext-regular.woff') format('woff');
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
   font-family: 'Merriweather Sans';
   font-style: normal;
   font-weight: 500;
-  src: local(''),
-    url('fonts/merriweather-sans-v20-latin_cyrillic-ext-500.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
+  src: local(''), url('fonts/merriweather-sans-v20-latin_cyrillic-ext-500.woff2') format('woff2'),
     url('fonts/merriweather-sans-v20-latin_cyrillic-ext-500.woff') format('woff');
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
   font-family: 'Merriweather Sans';
   font-style: normal;
   font-weight: 700;
-  src: local(''),
-    url('fonts/merriweather-sans-v20-latin_cyrillic-ext-700.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
+  src: local(''), url('fonts/merriweather-sans-v20-latin_cyrillic-ext-700.woff2') format('woff2'),
     url('fonts/merriweather-sans-v20-latin_cyrillic-ext-700.woff') format('woff');
-  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 :root {
@@ -59,7 +37,6 @@ code {
   --greyBF: hsl(0, 0%, 75%);
   --grey99: hsl(0, 0%, 60%);
   --grey66: hsl(0, 0%, 40%);
-  --grey33: hsl(0, 0%, 20%);
 }
 
 html {
@@ -74,17 +51,16 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: 300px;
   min-height: 100vh;
-  font-family: Merriweather Sans, sans-serif;
+  font-family: 'Merriweather Sans', sans-serif;
   font-size: 16px;
   font-weight: 400;
   background-color: var(--grayF5);
   color: var(--black);
 }
 
-img,
-svg {
+img {
   max-width: 100%;
   height: auto;
 }
@@ -123,7 +99,7 @@ iframe {
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
   padding: 0;
-  border: 0;
+  border: none;
   height: 1px;
   width: 1px;
   overflow: hidden;

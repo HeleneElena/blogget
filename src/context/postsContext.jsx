@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {usePostsData} from '../hooks/usePostsData';
+import {useBestPosts} from '../hooks/useBestPost';
 
 export const postsContext = React.createContext({});
 
 export const PostsContextProvider = ({children}) => {
-  const [posts] = usePostsData();
+  const [posts] = useBestPosts();
 
   return (
     <postsContext.Provider value={{posts}}>
       {children}
-    </postsContext.Provider>
-  );
+    </postsContext.Provider>);
 };
 
 PostsContextProvider.propTypes = {

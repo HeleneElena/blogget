@@ -3,4 +3,3 @@ export const generateRandomID = () =>
   Date.now().toString().substring(9);
 
 export const assignId = obj => ({...obj, id: generateRandomID()});
-

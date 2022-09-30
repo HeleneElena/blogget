@@ -1,4 +1,4 @@
-import {useEffect, useState, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {URL_API} from '../api/const';
 import {tokenContext} from '../context/tokenContext';
 
@@ -16,7 +16,8 @@ export const useAuth = () => {
     })
       .then(response => {
         if (response.status === 401) {
-          throw new Error(response.status);
+          delToken();
+          return;
         }
         return response.json();
       })
@@ -25,7 +26,7 @@ export const useAuth = () => {
         setAuth({name, img});
       })
       .catch(err => {
-        console.error(err);
+        console.error('Произошла ошибка: ', err);
         setAuth({});
         delToken();
       });
@@ -35,4 +36,3 @@ export const useAuth = () => {
 
   return [auth, clearAuth];
 };
-
