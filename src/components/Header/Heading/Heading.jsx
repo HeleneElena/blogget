@@ -1,6 +1,5 @@
 import style from './Heading.module.css';
 import PropTypes from 'prop-types';
-
 import {Text} from '../../../UI/Text';
 
 export const Heading = ({text}) => (
