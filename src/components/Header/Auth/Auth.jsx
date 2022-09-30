@@ -1,48 +1,45 @@
-import PropTypes from 'prop-types';
-import {urlAuth} from '../../../api/auth';
-import {Text} from '../../../UI/Text';
 import {useState, useContext} from 'react';
-import {tokenContext} from './../../../context/tokenContext';
-import {authContext} from './../../../context/authContext';
-
 import style from './Auth.module.css';
+
 import {ReactComponent as LoginIcon} from './img/login.svg';
+import {Text} from '../../../UI/Text';
+
+import {urlAuth} from '../../../api/auth';
+import {authContext} from '../../../context/authContext';
+import {tokenContext} from '../../../context/tokenContext';
 
 export const Auth = () => {
   const {delToken} = useContext(tokenContext);
+  const [showLogout, setShowLogout] = useState(false);
   const {auth, clearAuth} = useContext(authContext);
-  const [isBtnOpen, setIsBtnOpen] = useState(false);
+
+  const getOut = () => {
+    setShowLogout(!showLogout);
+  };
 
   const logout = () => {
     delToken();
     clearAuth();
   };
-    
+
   return (
     <div className={style.container}>
-      { auth.name ? (
-        <> 
-          <button onClick={() => setIsBtnOpen(!isBtnOpen)} className={style.btn}>
-            <img 
-              className={style.img} 
-              src={auth.img} 
-              title={auth.name} 
-              alt={`Avatar ${auth.name}`} 
-            />
+      {auth.name ? (
+        <>
+          <button className={style.btn} onClick={getOut}>
+            <img src={auth.img} title={auth.name} alt={`Аватар ${auth.name}`} className={style.img} />
           </button>
-          {isBtnOpen && <button onClick={logout} className={style.logout}>Выйти</button>}
+          {logout && (
+            <button className={style.logout} onClick={logout}>
+              Выйти
+            </button>
+          )}
         </>
       ) : (
-        <Text className={style.authLink} As='a' href={urlAuth}>
-          <LoginIcon className={style.svg} width={128} height={128} />
+        <Text As="a" href={urlAuth} className={style.authLink}>
+          <LoginIcon className={style.svg} />
         </Text>
-      )
-      }     
+      )}
     </div>
   );
-};
-
-Auth.propTypes = {
-  token: PropTypes.string,
-  delToken: PropTypes.func,
 };

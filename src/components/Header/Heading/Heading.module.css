@@ -1,11 +1,11 @@
 .heading {
-    order: 1;
-    grid-column: 1/4;
+  order: 1;
+  grid-column: 1/4;
 }
 
 @media (min-width: 768px) {
-    .heading {
-        order: 0;
-        grid-column: auto;
-    }
+  .heading {
+    order: 0;
+    grid-column: auto;
+  }
 }

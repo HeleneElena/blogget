@@ -1,27 +1,27 @@
-import PropTypes from 'prop-types';
-import {useEffect, useState} from 'react';
-import {assignId} from '../../../utils/generateRandomID';
-import {debounceRaf} from './../../../utils/debounceRaf';
+import {useState, useEffect} from 'react';
+import style from './Tabs.module.css';
+
+import {ReactComponent as ArrowIcon} from './img/arrow.svg';
+import {ReactComponent as BestIcon} from './img/best.svg';
+import {ReactComponent as HomeIcon} from './img/home.svg';
+import {ReactComponent as HotIcon} from './img/hot.svg';
+import {ReactComponent as TopIcon} from './img/top.svg';
+
+import {assignId} from '../../../utils/generateRandomId';
+import {debounceRaf} from '../../../utils/debounce';
 import {Text} from '../../../UI/Text';
 
-import style from './Tabs.module.css';
-import {ReactComponent as ArrowIcon} from './img/arrow.svg';
-import {ReactComponent as TopIcon} from './img/top.svg';
-import {ReactComponent as HomeIcon} from './img/home.svg';
-import {ReactComponent as BestIcon} from './img/best.svg';
-import {ReactComponent as HotIcon} from './img/hot.svg';
-
 const LIST = [
-  {value: 'Главная', Icon: HomeIcon},
-  {value: 'Топ', Icon: TopIcon},
-  {value: 'Лучшие', Icon: BestIcon},
-  {value: 'Горячие', Icon: HotIcon},
+  {value: 'Главная', Icon: BestIcon},
+  {value: 'Топ', Icon: HomeIcon},
+  {value: 'Лучшее', Icon: HotIcon},
+  {value: 'Горячие', Icon: TopIcon},
 ].map(assignId);
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(true);
-  const [btnText, setBtnText] = useState('Главная');
+  const [textBtn, setTextBtn] = useState('Показать меню');
 
   const handleResize = () => {
     if (document.documentElement.clientWidth < 768) {
@@ -36,7 +36,7 @@ export const Tabs = () => {
     debounceResize();
     window.addEventListener('resize', debounceResize);
     return () => {
-      window.addEventListener('resize', debounceResize);
+      window.removeEventListener('resize', debounceResize);
     };
   }, []);
 
@@ -44,38 +44,22 @@ export const Tabs = () => {
     <div className={style.container}>
       {isDropdown && (
         <div className={style.wrapperBtn}>
-          <button className={style.btn}
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            {btnText}
-            <ArrowIcon width={15} height={15} />
-          </button>
+          <Text As="button" className={style.btn} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            {textBtn} <ArrowIcon width={15} height={15} />
+          </Text>
         </div>
       )}
-
       {(isDropdownOpen || !isDropdown) && (
-        <ul className={style.list} onClick={() => setIsDropdownOpen(false)}>
-          {
-            LIST.map(({value, id, Icon}) => (
-              <Text As='li' className={style.item} key={id}>
-                <Text 
-                  As='button'               
-                  className={style.btn} 
-                  onClick={() => setBtnText(value)}>
-                  {value}
-                  {Icon && <Icon width={30} height={30} /> }
-                </Text>
+        <ul className={style.list} onClick={isDropdown ? () => setIsDropdownOpen(false) : null}>
+          {LIST.map(({value, id, Icon}) => (
+            <li className={style.item} key={id}>
+              <Text As="button" className={style.btn} onClick={isDropdown ? () => setTextBtn(value) : null}>
+                {value} {Icon && <Icon width={25} height={25} />}
               </Text>
-            ))} 
+            </li>
+          ))}
         </ul>
       )}
     </div>
   );
 };
-
-Tabs.propTypes = {
-  list: PropTypes.array,
-  setList: PropTypes.func,
-  addItem: PropTypes.func,
-};
-
-

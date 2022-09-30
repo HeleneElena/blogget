@@ -3,9 +3,9 @@ import {ReactComponent as SearchIcon} from './img/search.svg';
 
 export const Search = () => (
   <form className={style.form}>
-    <input className={style.search} type="search"></input>
+    <input type="search" className={style.search} />
     <button className={style.button}>
-      <SearchIcon className={style.svg} width={128} height={128} />
+      <SearchIcon className={style.svg} />
     </button>
   </form>
 );
